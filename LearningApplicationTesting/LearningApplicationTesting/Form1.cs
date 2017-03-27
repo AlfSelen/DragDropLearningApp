@@ -19,6 +19,8 @@ namespace LearningApplicationTesting
             LoopGen();
         }
         int size = 90;
+        PB_Info[] PBI = new PB_Info[9];
+        
         List<PictureBox> recipieBoxes = new List<PictureBox>();
 
         // ----- Creation of controls
@@ -45,6 +47,7 @@ namespace LearningApplicationTesting
                     int x = i * 3 + i * size + 10;
                     int y = j * 3 + j * size + 10;
                     GenPB(x, y, false, true, (3 * j + i).ToString());
+                    PBI[(3 * j + i)] = new PB_Info(false, "");
                 }
 
             }
@@ -90,7 +93,7 @@ namespace LearningApplicationTesting
                     }
                     for (int i = 0; i < recipieBoxes.Count; i++)
                     {
-                        if(recipieBoxes.IndexOf(i).Contains(PointToClient(Cursor.Position)))
+                        //if(recipieBoxes.IndexOf(i).Contains(PointToClient(Cursor.Position)))
                     }
 
                                 

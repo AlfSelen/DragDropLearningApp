@@ -10,8 +10,6 @@ namespace LearningApplicationTesting
     {
         private bool filled;
         private string item;
-        int startX, startY;
-        bool movable, recipieBox;
         // ---------------- Methods -------------------
         #region GetSetMethods
 
@@ -25,6 +23,22 @@ namespace LearningApplicationTesting
             get { return item; }
             set { value = item; }
         }
+        
+
+        // --------------- Constructor -------------------
+        public PB_Info(bool fd, string itm)            
+        {
+            filled = fd;
+            item = itm;
+        }
+
+        // -------------- Default Constructor --------------
+        public PB_Info()
+        {
+
+        }
+
+
 
         #endregion GetSetMethods
     }
