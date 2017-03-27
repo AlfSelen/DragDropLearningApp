@@ -114,6 +114,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\ItemIndex.json" />
     <None Include="Resources\Minecraft_grass_block.png" />
   </ItemGroup>
   <ItemGroup>

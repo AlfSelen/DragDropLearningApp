@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.IO;
 
 namespace LearningApplicationTesting
 {
@@ -19,12 +20,14 @@ namespace LearningApplicationTesting
 
         //Load functions
         //Load Itemindex
-        private List<Item> LoadItemIndex()
+        private void LoadItemIndex()
         {
-            string
+            string ItemIndexJSON = Properties.Resources.ItemIndex.ToString();
+            Item item = JsonConvert.DeserializeObject<Item>(ItemIndexJSON);
 
 
-            return 
+
+
         }    
             //Load Recepice
         //Save functions

@@ -61,6 +61,16 @@ namespace LearningApplicationTesting.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ItemIndex {
+            get {
+                object obj = ResourceManager.GetObject("ItemIndex", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Minecraft_grass_block {
