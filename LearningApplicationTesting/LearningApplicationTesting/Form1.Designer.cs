@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {           
-            this.SuspendLayout();            
+            this.SuspendLayout();
             // 
             // Form1
             // 
@@ -38,6 +38,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
+
         }
 
         #endregion

@@ -19,9 +19,10 @@ namespace LearningApplicationTesting
             LoopGen();
         }
         int size = 90;
+        PictureBox lastpicturebox;
         PB_Info[] PBI = new PB_Info[9];
         
-        List<PictureBox> recipieBoxes = new List<PictureBox>();
+        PictureBox[] recipieBoxes = new PictureBox[9];
 
         // ----- Creation of controls
         #region Controls
@@ -59,8 +60,6 @@ namespace LearningApplicationTesting
         {
             #region MiscStuff
             PictureBox pb = new PictureBox();
-            if (recipieBox)
-                recipieBoxes.Add(pb);
             pb.Left = startX;
             pb.Top = startY;
             pb.Size = new Size(size, size);
@@ -82,21 +81,17 @@ namespace LearningApplicationTesting
                     MouseDownLocation = e.Location;
                     LastPos = new Point(pb.Location.X,pb.Location.Y);
 
-                    
+                    int misc = 0;
                     foreach (PictureBox rb in recipieBoxes)
                     {
                         if (rb.Bounds.Contains(PointToClient(Cursor.Position)))
                         {
-                            //rb.Tag = rb.Tag.ToString().Split('-')[0];
+                            PBI[misc].Filled = false;
+                            lastpicturebox = rb;
                             break;
                         }
-                    }
-                    for (int i = 0; i < recipieBoxes.Count; i++)
-                    {
-                        //if(recipieBoxes.IndexOf(i).Contains(PointToClient(Cursor.Position)))
-                    }
-
-                                
+                        misc++;
+                    }                                
                 };
                 //Beveger objektet
                 pb.MouseMove += (sender, e) =>
@@ -111,35 +106,40 @@ namespace LearningApplicationTesting
                 pb.MouseUp += (sender, e) =>
                 {
                     bool used = false;
+                    int i = 0;
                     foreach(PictureBox rb in recipieBoxes)
                     {
                         if (rb.Bounds.Contains(PointToClient(Cursor.Position)))
+                        {
+                            if (!PBI[i].Filled)
                             {
-                            if ((rb.Tag.ToString().Split('-').Length == 1))
-                            {
+                                PBI[i].Filled = true;
                                 pb.Left = rb.Left;
                                 pb.Top = rb.Top;
-                                rb.Tag = String.Format("{0}-{1}", rb.Tag.ToString().Split('-')[0], pb.Tag.ToString().Split('-')[0]);
-                                pb.Tag = String.Format("{1}-{0}", rb.Tag.ToString().Split('-')[0], pb.Tag.ToString().Split('-')[0]);
-
-                                Console.WriteLine("Recipie box tag: {0} \n Pictur box tag: {1}", rb.Tag, pb.Tag);
                                 used = true;
                                 break;
                             }
-                            else if (rb.Tag.ToString().Split('-').Length > 1)
+                            else
                             {
-                                rb.Tag = String.Format("{0}-{1}", rb.Tag.ToString().Split('-')[0], pb.Tag.ToString().Split('-')[0]);
-                                Console.WriteLine("Recipie box tag: {0} \n Pictur box tag: {1}", rb.Tag, pb.Tag);
                                 pb.Location = LastPos;
                                 used = true;
+                                
+                                for (int j = 0; j < 9; j++)
+                                {
+                                    if (recipieBoxes[j].Bounds.Contains(LastPos))
+                                    {
+                                        PBI[Convert.ToInt16(lastpicturebox.Tag.ToString())].Filled = true;
+                                        break;
+                                    }
+                                }
                                 break;
                             }
                         }
+                        i++;
                     }
+
                     if (!used)
                     {
-                        Console.WriteLine("Pictur box tag: {0}", pb.Tag);
-                        //pb.Tag = pb.Tag = rb.Tag.ToString().Split('-')[0];
                         pb.Left = startX;
                         pb.Top = startY;
                     }
@@ -152,6 +152,8 @@ namespace LearningApplicationTesting
         {
             PictureBox pb = GenPB(startX, startY, movable, recipieBox);
             pb.Tag = tag;
+            if (recipieBox)
+                recipieBoxes[Convert.ToInt16(tag.ToString())] = pb;
             return pb;
             //
 
