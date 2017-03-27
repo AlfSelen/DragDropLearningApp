@@ -63,6 +63,16 @@ namespace LearningApplicationTesting.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] ItemIcons {
+            get {
+                object obj = ResourceManager.GetObject("ItemIcons", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] ItemIndex {
             get {
                 object obj = ResourceManager.GetObject("ItemIndex", resourceCulture);

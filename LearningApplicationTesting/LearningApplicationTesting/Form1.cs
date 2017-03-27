@@ -52,6 +52,7 @@ namespace LearningApplicationTesting
 
             }
             GenPB(this.Width / 2 + 50, size + 10 +3,false,false );
+            Recipe rp = new Recipe();
         }
 
         //Generer en picturebox, fra noen parametere, Overloaded method

@@ -6,31 +6,11 @@ using System.Threading.Tasks;
 
 namespace LearningApplicationTesting
 {
+    //
+    // Summary:
+    //     A list of 9 item class object in a 3x3 table 
     class Recipe
     {
-        string[] recipe = new string[9];
-        private Recipe()
-        {
-            string slot1 = "1";
-            string slot2 = "1";
-            string slot3 = "1";
-            string slot4 = "1";
-            string slot5 = "1";
-            string slot6 = "1";
-            string slot7 = "1";
-            string slot8 = "1";
-            string slot9 = "1";
-
-            recipe[0] = slot1;
-            recipe[1] = slot2;
-            recipe[2] = slot3;
-            recipe[3] = slot4;
-            recipe[4] = slot5;
-            recipe[5] = slot6;
-            recipe[6] = slot7;
-            recipe[7] = slot8;
-            recipe[8] = slot9;
-        }
-   
+        List<Item> rp = new List<Item>();
     }
 }
