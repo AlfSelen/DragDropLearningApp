@@ -55,7 +55,7 @@ namespace LearningApplicationTesting
             GenPB(this.Width / 2 + 50, size + 10 +3,false,false );
         }
 
-        //Generer en picturebox, fra noen parametere
+        //Generer en picturebox, fra noen parametere, Overloaded method
         private PictureBox GenPB(int startX, int startY, bool movable, bool recipieBox)
         {
             #region MiscStuff
@@ -102,7 +102,7 @@ namespace LearningApplicationTesting
                         pb.Top = pb.Top - MouseDownLocation.Y + e.Y;
                     }
                 };
-
+                //Når man slipper et objekt
                 pb.MouseUp += (sender, e) =>
                 {
                     bool used = false;
@@ -155,65 +155,12 @@ namespace LearningApplicationTesting
             if (recipieBox)
                 recipieBoxes[Convert.ToInt16(tag.ToString())] = pb;
             return pb;
-            //
-
-            /*
-            PictureBox pb = new PictureBox();
-
-            if (recipieBox)
-                recipieBoxes.Add(pb);
-            pb.Left = startX;
-            pb.Top = startY;
-            pb.Size = new Size(size, size);
-            pb.Tag = tag;
-            pb.BackColor = Color.LightGray;
-            pb.AllowDrop = true;
-            pb.BorderStyle = BorderStyle.FixedSingle;
-            pb.SizeMode = PictureBoxSizeMode.StretchImage;
-            pb.Click += (sender, e) => { Console.WriteLine(pb.Tag); };
-            if (movable)
-                pb.Image = Properties.Resources.Minecraft_grass_block;
-            if (movable)
-            {
-                pb.MouseDown += (sender, e) =>
-                {
-                    pb.BringToFront();
-                    MouseDownLocation = e.Location;
-                    Console.WriteLine(pb.Tag);
-                };
-                pb.MouseMove += (sender, e) =>
-                {
-                    if (e.Button == System.Windows.Forms.MouseButtons.Left)
-                    {
-                        pb.Left = pb.Left - MouseDownLocation.X + e.X;
-                        pb.Top = pb.Top - MouseDownLocation.Y + e.Y;
-                    }
-                };
-                pb.MouseUp += (sender, e) =>
-                {
-                    foreach (PictureBox rb in recipieBoxes)
-                    {
-                        if (rb.Bounds.Contains(PointToClient(Cursor.Position)))
-                        {
-                            pb.Left = rb.Left;
-                            pb.Top = rb.Top;
-                            //pb.Tag = rb.Tag;
-
-
-                            break;
-                        }
-                    }
-                };
-            }
-            Controls.Add(pb);
-            return pb;
-            */
-
-            //
         }
 
         #endregion Controls
 
+        //Ubrukte Methoder (fjerne ?)
+        #region Unused
         private bool check_ifOriginalTag(string rb)
         {
             for (int i = 0; i < 9; i++)
@@ -222,7 +169,6 @@ namespace LearningApplicationTesting
             }
             return false;
         }
-
         private PictureBox find_Tag(string tag)
         {
             foreach (PictureBox rb in recipieBoxes)
@@ -232,5 +178,6 @@ namespace LearningApplicationTesting
             }
             return null;
         }
+        #endregion Unused
     }
 }
