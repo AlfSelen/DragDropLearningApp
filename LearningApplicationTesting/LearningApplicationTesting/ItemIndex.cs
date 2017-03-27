@@ -8,7 +8,7 @@ namespace LearningApplicationTesting
 {
     class ItemIndex
     {
-        List<string> itemIndex = new List<string>();
+        List<Item> itemIndex = new List<Item>();
         List<string> recepie = new List<string>();
 
         private ItemIndex()
@@ -16,10 +16,15 @@ namespace LearningApplicationTesting
             
         }
 
-        //
-
         //Load functions
-            //Load Itemindex
+        //Load Itemindex
+        private List<Item> LoadItemIndex()
+        {
+            List < Item >
+
+
+            return 
+        }    
             //Load Recepice
         //Save functions
     }
