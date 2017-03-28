@@ -23,7 +23,7 @@ namespace LearningApplicationTesting
         
         List<PictureBox> recipieBoxes = new List<PictureBox>();
 
-        // ----- Creation of controls
+        //Creation of controls
         #region Controls
 
         //Call for controlls

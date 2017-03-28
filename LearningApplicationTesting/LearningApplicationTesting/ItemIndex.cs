@@ -10,16 +10,23 @@ namespace LearningApplicationTesting
 {
     class ItemIndex
     {
+        //-------------------------------------------------------
+        #region Properties
         private List<Item> Items { get; set; }
         private List<Recipe> Recipes { get; set; }
+        #endregion
 
+        //-------------------------------------------------------
+        #region Constructors
         private ItemIndex()
         {
             Items = LoadItemIndex();
-            //Recipes = LoadRecipeIndex();
+            Recipes = LoadRecipeIndex();
         }
+        #endregion
 
-        #region
+        //-------------------------------------------------------
+        #region Loading Functions
         //Load Itemindex
         private List<Item> LoadItemIndex()
         { 
@@ -34,6 +41,7 @@ namespace LearningApplicationTesting
         }
         #endregion
 
+        //-------------------------------------------------------
         #region Save functions 
         //Add Recipe to Recipeindex savefile.
         private void SaveRecipeToindex(Recipe recipeToSave)
@@ -46,6 +54,8 @@ namespace LearningApplicationTesting
         }
         #endregion
 
-        //Add more functions such as Custum List
+        //-------------------------------------------------------
+        #region Add more functions such as Custum List
+        #endregion
     }
 }
