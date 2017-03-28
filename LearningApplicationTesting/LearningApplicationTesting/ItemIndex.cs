@@ -16,9 +16,10 @@ namespace LearningApplicationTesting
         private ItemIndex()
         {
             Items = LoadItemIndex();
+            //Recipes = LoadRecipeIndex();
         }
 
-        //Load functions
+        #region
         //Load Itemindex
         private List<Item> LoadItemIndex()
         { 
@@ -26,12 +27,25 @@ namespace LearningApplicationTesting
             return JsonConvert.DeserializeObject<List<Item>>(ItemIndexJSON);
         }
         //Load Recepice
-        /*private List<Recipe> LoadRecipeIndex()
+        private List<Recipe> LoadRecipeIndex()
         {
-            string RecipeIndexJSON = Properties.Resources.RecipeIndex.ToString();
-            return JsonConvert.DeserializeObject<List<Recipe>>(RecipeIndexJSON);
-        }*/
+            string recipeIndexJSON = Properties.Resources.RecipeIndex.ToString();
+            return JsonConvert.DeserializeObject<List<Recipe>>(recipeIndexJSON);
+        }
+        #endregion
 
-        //Save functions
+        #region Save functions 
+        //Add Recipe to Recipeindex savefile.
+        private void SaveRecipeToindex(Recipe recipeToSave)
+        {
+            string recipeIndexJSON = Properties.Resources.RecipeIndex.ToString();
+            List<Recipe> recipeIndexLoaded = JsonConvert.DeserializeObject<List<Recipe>>(recipeIndexJSON);
+            recipeIndexLoaded.Add(recipeToSave);
+            recipeIndexJSON = JsonConvert.SerializeObject(recipeIndexJSON);
+            File.WriteAllText(Properties.Resources.RecipeIndex, recipeIndexJSON);
+        }
+        #endregion
+
+        //Add more functions such as Custum List
     }
 }
