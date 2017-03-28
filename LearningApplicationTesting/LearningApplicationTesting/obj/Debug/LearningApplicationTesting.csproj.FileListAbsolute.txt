@@ -28,3 +28,5 @@ C:\Users\Alf\Documents\GitHub\DragDropLearningApp\LearningApplicationTesting\Lea
 C:\Users\Alf\Documents\GitHub\DragDropLearningApp\LearningApplicationTesting\LearningApplicationTesting\obj\Debug\LearningApplicationTesting.Designer_Form.resources
 C:\Users\Alf\Documents\GitHub\DragDropLearningApp\LearningApplicationTesting\LearningApplicationTesting\obj\Debug\LearningApplicationTesting.Properties.Resources.resources
 C:\Users\Alf\Documents\GitHub\DragDropLearningApp\LearningApplicationTesting\LearningApplicationTesting\obj\Debug\LearningApplicationTesting.csproj.GenerateResource.Cache
+C:\Users\Alf\Documents\GitHub\DragDropLearningApp\LearningApplicationTesting\LearningApplicationTesting\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Alf\Documents\GitHub\DragDropLearningApp\LearningApplicationTesting\LearningApplicationTesting\bin\Debug\Newtonsoft.Json.xml
