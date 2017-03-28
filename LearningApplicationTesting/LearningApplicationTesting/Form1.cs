@@ -22,11 +22,13 @@ namespace LearningApplicationTesting
         int size = 90;
         PB_Info[] PBI = new PB_Info[9];
         List<PictureBox> recipieBoxes = new List<PictureBox>();
+
         private Point MouseDownLocation;
         private Point LastPos;
         private bool[] recipieFilled = new bool[9];
         #endregion Variabels & classes
         // ----- Creation of controls
+
         #region Controls
 
         //Call for controlls
@@ -52,6 +54,7 @@ namespace LearningApplicationTesting
 
             }
             GenPB(this.Width / 2 + 50, size + 10 +3,false,false );
+            Recipe rp = new Recipe();
         }
 
         //Generer en picturebox, fra noen parametere, Overloaded method

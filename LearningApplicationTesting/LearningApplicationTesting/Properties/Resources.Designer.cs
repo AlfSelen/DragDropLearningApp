@@ -61,12 +61,11 @@ namespace LearningApplicationTesting.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized string similar to [{&quot;type&quot;:0,&quot;meta&quot;:0,&quot;name&quot;:&quot;Air&quot;,&quot;text_type&quot;:&quot;air&quot;},{&quot;type&quot;:1,&quot;meta&quot;:0,&quot;name&quot;:&quot;Stone&quot;,&quot;text_type&quot;:&quot;stone&quot;},{&quot;type&quot;:1,&quot;meta&quot;:1,&quot;name&quot;:&quot;Granite&quot;,&quot;text_type&quot;:&quot;stone&quot;},{&quot;type&quot;:1,&quot;meta&quot;:2,&quot;name&quot;:&quot;Polished Granite&quot;,&quot;text_type&quot;:&quot;stone&quot;},{&quot;type&quot;:1,&quot;meta&quot;:3,&quot;name&quot;:&quot;Diorite&quot;,&quot;text_type&quot;:&quot;stone&quot;},{&quot;type&quot;:1,&quot;meta&quot;:4,&quot;name&quot;:&quot;Polished Diorite&quot;,&quot;text_type&quot;:&quot;stone&quot;},{&quot;type&quot;:1,&quot;meta&quot;:5,&quot;name&quot;:&quot;Andesite&quot;,&quot;text_type&quot;:&quot;stone&quot;},{&quot;type&quot;:1,&quot;meta&quot;:6,&quot;name&quot;:&quot;Polished Andesite&quot;,&quot;text_type&quot;:&quot;stone&quot;},{&quot;type&quot;:2,&quot;meta&quot;:0,&quot;name&quot;:&quot;G....
         /// </summary>
-        internal static byte[] ItemIndex {
+        internal static string ItemIndex {
             get {
-                object obj = ResourceManager.GetObject("ItemIndex", resourceCulture);
-                return ((byte[])(obj));
+                return ResourceManager.GetString("ItemIndex", resourceCulture);
             }
         }
         
@@ -77,6 +76,15 @@ namespace LearningApplicationTesting.Properties {
             get {
                 object obj = ResourceManager.GetObject("Minecraft_grass_block", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string RecipeIndex {
+            get {
+                return ResourceManager.GetString("RecipeIndex", resourceCulture);
             }
         }
     }
