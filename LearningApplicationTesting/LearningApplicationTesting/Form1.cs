@@ -18,20 +18,20 @@ namespace LearningApplicationTesting
             //InitializeOwnComponents();
             LoopGen();
         }
+        #region Variabels & classes
         int size = 90;
         PB_Info[] PBI = new PB_Info[9];
-        
         List<PictureBox> recipieBoxes = new List<PictureBox>();
-
+        private Point MouseDownLocation;
+        private Point LastPos;
+        private bool[] recipieFilled = new bool[9];
+        #endregion Variabels & classes
         // ----- Creation of controls
         #region Controls
 
         //Call for controlls
 
         //Controll Design
-        private Point MouseDownLocation;
-        private Point LastPos;
-        private bool[] recipieFilled = new bool[9];
 
         //Lager pictureboxes med GenPB funksjonen
         private void LoopGen()
