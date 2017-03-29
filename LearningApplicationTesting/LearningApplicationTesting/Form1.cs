@@ -18,32 +18,28 @@ namespace LearningApplicationTesting
             //InitializeOwnComponents();
             LoopGen();
         }
-
-        //-----------------------------------------------------
-        #region Variabels & classes
         int size = 90;
+        PictureBox lastpicturebox;
         PB_Info[] PBI = new PB_Info[9];
-        List<PictureBox> recipieBoxes = new List<PictureBox>();
 
+        PictureBox[] recipieBoxes = new PictureBox[9];
+
+        // ----- Creation of controls
+        #region Controls
+
+        //Call for controlls
+
+        //Controll Design
         private Point MouseDownLocation;
         private Point LastPos;
         private bool[] recipieFilled = new bool[9];
-        #endregion Variabels & classes
 
-        //-----------------------------------------------------
-        #region Objects & Controls
-        //Call for controlls
-
-
-        //Controll Design
-
-
-        //Loop to generate a spesific amout of pictureboxes with GenPB function
+        //Lager pictureboxes med GenPB funksjonen
         private void LoopGen()
         {
             for (int i = 0; i < 9; i++)
             {
-                GenPB(i * size + i * 3, this.Height - size - 45, true,false,(i).ToString());
+                GenPB(i * size + i * 3, this.Height - size - 45, true, false, (i).ToString());
             }
             for (int i = 0; i < 3; i++)
             {
@@ -56,105 +52,99 @@ namespace LearningApplicationTesting
                 }
 
             }
-            GenPB(this.Width / 2 + 50, size + 10 +3,false,false );
-            Recipe rp = new Recipe();
+            GenPB(this.Width / 2 + 50, size + 10 + 3, false, false);
         }
 
-        //Generates an picturebox based on parameters, Overload functions
+        //Generer en picturebox, fra noen parametere
         private PictureBox GenPB(int startX, int startY, bool movable, bool recipieBox)
         {
-            //------------------------------------------------
             #region MiscStuff
             PictureBox pb = new PictureBox();
-            if (recipieBox)
-                recipieBoxes.Add(pb);
             pb.Left = startX;
             pb.Top = startY;
             pb.Size = new Size(size, size);
             pb.BackColor = Color.LightGray;
             pb.AllowDrop = true;
             pb.BorderStyle = BorderStyle.FixedSingle;
-            pb.SizeMode = PictureBoxSizeMode.StretchImage;   
-            if(movable)
+            pb.SizeMode = PictureBoxSizeMode.StretchImage;
+            if (movable)
                 pb.Image = Properties.Resources.Minecraft_grass_block;
             #endregion MiscStuff
 
-            //Picturebox moving event functions. Adds the function with LINQ to event property of ech Picturbox
-            //If Excludes non-moavle objects such as Recipeboxes form runnin the code
+            //Adding events if
             if (movable)
             {
-                //MouseDown function added to eventcalls in picturebox.
+                //MouseDown, skjer når man klikker
                 pb.MouseDown += (sender, e) =>
                 {
                     pb.BringToFront();
                     MouseDownLocation = e.Location;
-                    LastPos = new Point(pb.Location.X,pb.Location.Y);
+                    LastPos = new Point(pb.Location.X, pb.Location.Y);
 
-                    //Toclean? -Victor
-                    /*
+                    int misc = 0;
                     foreach (PictureBox rb in recipieBoxes)
                     {
-                        if (rb.Bounds.Contains(PointToClient(Cursor.Position))) { break; }
+                        if (rb.Bounds.Contains(PointToClient(Cursor.Position)))
+                        {
+                            PBI[misc].Filled = false;
+                            lastpicturebox = rb;
+                            break;
+                        }
+                        misc++;
                     }
-                    for (int i = 0; i < recipieBoxes.Count; i++)
-                    {
-                        //if(recipieBoxes.IndexOf(i).Contains(PointToClient(Cursor.Position)))
-                    }
-                    */ 
                 };
-                //Move the object based on relative mouse postion to picturbox.
+                //Beveger objektet
                 pb.MouseMove += (sender, e) =>
                 {
-                    if (e.Button == MouseButtons.Left)
+                    if (e.Button == System.Windows.Forms.MouseButtons.Left)
                     {
                         pb.Left = pb.Left - MouseDownLocation.X + e.X;
                         pb.Top = pb.Top - MouseDownLocation.Y + e.Y;
                     }
                 };
-                //Mouse button released validate position to game mechanics.
+
                 pb.MouseUp += (sender, e) =>
                 {
                     bool used = false;
-                    //Checks if the dropped picturebox is "ontop" of an recipebox.
-                    foreach(PictureBox rb in recipieBoxes)
+                    int i = 0;
+                    foreach (PictureBox rb in recipieBoxes)
                     {
                         if (rb.Bounds.Contains(PointToClient(Cursor.Position)))
+                        {
+                            if (!PBI[i].Filled)
                             {
-                            //Validates if recipebox is allready occupied by another picturebox.
-                            if ((rb.Tag.ToString().Split(':').Length == 1))
-                            {
+                                PBI[i].Filled = true;
                                 pb.Left = rb.Left;
                                 pb.Top = rb.Top;
-                                //Links recipebox and picturbox to eachother through tags.
-                                rb.Tag = String.Format("{0}:{1}", rb.Tag.ToString().Split(':')[0], pb.Tag.ToString().Split(':')[0]);
-                                pb.Tag = String.Format("{1}:{0}", rb.Tag.ToString().Split(':')[0], pb.Tag.ToString().Split(':')[0]);
-
-                                Console.WriteLine("Recipie box tag: {0} \n Pictur box tag: {1}", rb.Tag, pb.Tag);
                                 used = true;
                                 break;
                             }
-                            //If recipebox is occupied restet picturebox position to original position.
                             else
                             {
-                                Console.WriteLine("Recipie box tag: {0} \n Pictur box tag: {1}", rb.Tag, pb.Tag); //Debug tool
                                 pb.Location = LastPos;
                                 used = true;
+
+                                for (int j = 0; j < 9; j++)
+                                {
+                                    if (recipieBoxes[j].Bounds.Contains(LastPos))
+                                    {
+                                        PBI[Convert.ToInt16(lastpicturebox.Tag.ToString())].Filled = true;
+                                        break;
+                                    }
+                                }
                                 break;
                             }
                         }
+                        i++;
                     }
-                    //If picturebox is dropped "outside" the recipebox grid
+
                     if (!used)
                     {
-                        if (pb.Tag.ToString().Split(':').Length >= 1) { pb.Tag = pb.Tag.ToString().Split(':')[0];  } //Resets the picturebox tag
-                        Console.WriteLine("Picturebox tag: {0}", pb.Tag); //Debug tool
                         pb.Left = startX;
                         pb.Top = startY;
                     }
                 };
             }
-
-            //Finish generation with adding the picturebox controll to the from.
             Controls.Add(pb);
             return pb;
         }
@@ -162,12 +152,65 @@ namespace LearningApplicationTesting
         {
             PictureBox pb = GenPB(startX, startY, movable, recipieBox);
             pb.Tag = tag;
+            if (recipieBox)
+                recipieBoxes[Convert.ToInt16(tag.ToString())] = pb;
             return pb;
+            //
+
+            /*
+            PictureBox pb = new PictureBox();
+            if (recipieBox)
+                recipieBoxes.Add(pb);
+            pb.Left = startX;
+            pb.Top = startY;
+            pb.Size = new Size(size, size);
+            pb.Tag = tag;
+            pb.BackColor = Color.LightGray;
+            pb.AllowDrop = true;
+            pb.BorderStyle = BorderStyle.FixedSingle;
+            pb.SizeMode = PictureBoxSizeMode.StretchImage;
+            pb.Click += (sender, e) => { Console.WriteLine(pb.Tag); };
+            if (movable)
+                pb.Image = Properties.Resources.Minecraft_grass_block;
+            if (movable)
+            {
+                pb.MouseDown += (sender, e) =>
+                {
+                    pb.BringToFront();
+                    MouseDownLocation = e.Location;
+                    Console.WriteLine(pb.Tag);
+                };
+                pb.MouseMove += (sender, e) =>
+                {
+                    if (e.Button == System.Windows.Forms.MouseButtons.Left)
+                    {
+                        pb.Left = pb.Left - MouseDownLocation.X + e.X;
+                        pb.Top = pb.Top - MouseDownLocation.Y + e.Y;
+                    }
+                };
+                pb.MouseUp += (sender, e) =>
+                {
+                    foreach (PictureBox rb in recipieBoxes)
+                    {
+                        if (rb.Bounds.Contains(PointToClient(Cursor.Position)))
+                        {
+                            pb.Left = rb.Left;
+                            pb.Top = rb.Top;
+                            //pb.Tag = rb.Tag;
+                            break;
+                        }
+                    }
+                };
+            }
+            Controls.Add(pb);
+            return pb;
+            */
+
+            //
         }
+
         #endregion Controls
 
-        //Unused Functions(ToClean?)--------------------------
-        #region Unused
         private bool check_ifOriginalTag(string rb)
         {
             for (int i = 0; i < 9; i++)
@@ -176,6 +219,7 @@ namespace LearningApplicationTesting
             }
             return false;
         }
+
         private PictureBox find_Tag(string tag)
         {
             foreach (PictureBox rb in recipieBoxes)
@@ -185,6 +229,5 @@ namespace LearningApplicationTesting
             }
             return null;
         }
-        #endregion Unused
     }
 }
