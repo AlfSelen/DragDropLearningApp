@@ -15,16 +15,18 @@ namespace LearningApplicationTesting
         public Form1()
         {
             InitializeComponent();
-            //InitializeOwnComponents();
+            //InitializeOwnComponents, using LoopGen to create movable objects and stationary objects
             LoopGen();
         }
+        // -------- Declaration of Classes and Variabels --------
+        #region Classes&Varibels
         int size = 90;
         PictureBox lastpicturebox;
         PB_Info[] PBI = new PB_Info[9];
-
         PictureBox[] recipieBoxes = new PictureBox[9];
+        #endregion Classes&Variabels
 
-        // ----- Creation of controls
+        // ----- Creation of controls -----------
         #region Controls
 
         //Call for controlls
@@ -101,7 +103,9 @@ namespace LearningApplicationTesting
                         pb.Top = pb.Top - MouseDownLocation.Y + e.Y;
                     }
                 };
-
+                //MouseUp - event for when you drop the picturebox
+                //Checks where it's dropped, and locks it a location,
+                //Updates the grid if fill Filled
                 pb.MouseUp += (sender, e) =>
                 {
                     bool used = false;
@@ -136,7 +140,7 @@ namespace LearningApplicationTesting
                         }
                         i++;
                     }
-
+                    //Moves picturebox to startlocation, if it's out of location
                     if (!used)
                     {
                         pb.Left = startX;
@@ -147,6 +151,8 @@ namespace LearningApplicationTesting
             Controls.Add(pb);
             return pb;
         }
+
+        //Generates a picturebox, with more parameters
         private PictureBox GenPB(int startX, int startY, bool movable, bool recipieBox, string tag)
         {
             PictureBox pb = GenPB(startX, startY, movable, recipieBox);
@@ -158,6 +164,8 @@ namespace LearningApplicationTesting
 
         #endregion Controls
 
+        //Old code, from when we Used the .tag property for storing information
+        #region Unused
         private bool check_ifOriginalTag(string rb)
         {
             for (int i = 0; i < 9; i++)
@@ -166,7 +174,6 @@ namespace LearningApplicationTesting
             }
             return false;
         }
-
         private PictureBox find_Tag(string tag)
         {
             foreach (PictureBox rb in recipieBoxes)
@@ -176,5 +183,6 @@ namespace LearningApplicationTesting
             }
             return null;
         }
+        #endregion Unused
     }
 }
