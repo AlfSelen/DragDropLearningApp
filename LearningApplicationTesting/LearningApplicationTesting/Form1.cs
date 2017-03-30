@@ -24,14 +24,13 @@ namespace LearningApplicationTesting
         PictureBox lastpicturebox;
         PB_Info[] PBI = new PB_Info[9];
         PictureBox[] recipieBoxes = new PictureBox[9];
+        private Point MouseDownLocation;
+        private Point LastPos;
+        ItemIndex itemIndex = new ItemIndex();
         #endregion Classes&Variabels
 
         // ----- Creation of controls -----------
         #region Controls
-        //properties
-        private Point MouseDownLocation;
-        private Point LastPos;
-        private bool[] recipieFilled = new bool[9];
 
         //Creating pictureboxes using GenPB(), with parameters
         private void LoopGen()
@@ -51,7 +50,7 @@ namespace LearningApplicationTesting
                 }
 
             }
-            GenPB("Wisheditem&CheckBOX" ,this.Width / 2 + 50, size + 10 + 3, false, false);
+            GenPB("Wisheditem&CheckBOX" ,this.Width / 2 + 50, size + 13, false, false);
         }
 
         //Generates a picturebox, with parameters, (Overloaded Method)
@@ -71,7 +70,7 @@ namespace LearningApplicationTesting
                 pb.Image = Properties.Resources.Minecraft_grass_block;
             #endregion MiscStuff
 
-            //Adding events if movable == true
+            //Adding events if movable == true (that means itemboxes)
             if (movable)
             {
                 //MouseDown - event
@@ -154,12 +153,23 @@ namespace LearningApplicationTesting
                     }
                 };
             }
+
+            //
+            if (pb.Name == "Wisheditem&CheckBOX")
+            {
+                pb.Click += (s, e) => 
+                {
+                    
+                };
+            }
+
             //Debug tool
             pb.Click += (s, e) => 
             {
                 PictureBox p = s as PictureBox;
                 Console.WriteLine("--------------------");
                 Console.WriteLine(p.Name);
+                //Console.Beep();
             };
 
             Controls.Add(pb);
@@ -177,6 +187,12 @@ namespace LearningApplicationTesting
         }
 
         #endregion Controls
+
+        //To create new
+        private void makeRecipe()
+        {
+
+        }
 
         //Old code, from when we Used the .tag property for storing information
         #region Unused

@@ -8,7 +8,7 @@ using System.IO;
 
 namespace LearningApplicationTesting
 {
-    class ItemIndex
+    public class ItemIndex
     {
         //-------------------------------------------------------
         #region Properties
@@ -18,7 +18,7 @@ namespace LearningApplicationTesting
 
         //-------------------------------------------------------
         #region Constructors
-        private ItemIndex()
+        public ItemIndex()
         {
             Items = LoadItemIndex();
             Recipes = LoadRecipeIndex();
