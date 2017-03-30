@@ -8,38 +8,21 @@ namespace LearningApplicationTesting
 {
     class PB_Info
     {
-        private bool filled;
-        private string item;
-        // ---------------- Methods -------------------
-        #region GetSetMethods
+        // ---------------- Properties -------------------
 
-        public bool Filled
-        {
-            get { return filled; }
-            set { filled = value;}
-        }
-        public string Item
-        {
-            get { return item; }
-            set { value = item; }
-        }
+        public bool Filled { get; set; }
+        public string Item { get; set; }
         
-
         // --------------- Constructor -------------------
+
         public PB_Info(bool fd, string itm)            
         {
-            filled = fd;
-            item = itm;
+            Filled = fd;
+            Item = itm;
         }
 
-        // -------------- Default Constructor --------------
-        public PB_Info()
-        {
+        // -------------- Default Constructor ------------
 
-        }
-
-
-
-        #endregion GetSetMethods
+        public PB_Info() {}
     }
 }

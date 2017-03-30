@@ -28,10 +28,7 @@ namespace LearningApplicationTesting
 
         // ----- Creation of controls -----------
         #region Controls
-
-        //Call for controlls
-
-        //Controll Design
+        //properties
         private Point MouseDownLocation;
         private Point LastPos;
         private bool[] recipieFilled = new bool[9];
@@ -41,7 +38,7 @@ namespace LearningApplicationTesting
         {
             for (int i = 0; i < 9; i++)
             {
-                GenPB(i * size + i * 3, this.Height - size - 45, true, false, (i).ToString());
+                GenPB(String.Format("ItemBoxNR:{0}",i),i * size + i * 3, this.Height - size - 45, true, false, (i).ToString());
             }
             for (int i = 0; i < 3; i++)
             {
@@ -49,19 +46,20 @@ namespace LearningApplicationTesting
                 {
                     int x = i * 3 + i * size + 10;
                     int y = j * 3 + j * size + 10;
-                    GenPB(x, y, false, true, (3 * j + i).ToString());
+                    GenPB(String.Format("RecipeBoxNR:{0}", (3 * j + i)), x, y, false, true, (3 * j + i).ToString());
                     PBI[(3 * j + i)] = new PB_Info(false, "");
                 }
 
             }
-            GenPB(this.Width / 2 + 50, size + 10 + 3, false, false);
+            GenPB("Wisheditem&CheckBOX" ,this.Width / 2 + 50, size + 10 + 3, false, false);
         }
 
         //Generates a picturebox, with parameters, (Overloaded Method)
-        private PictureBox GenPB(int startX, int startY, bool movable, bool recipieBox)
+        private PictureBox GenPB(string name, int startX, int startY, bool movable, bool recipieBox)
         {
             #region MiscStuff
             PictureBox pb = new PictureBox();
+            pb.Name = name;
             pb.Left = startX;
             pb.Top = startY;
             pb.Size = new Size(size, size);
@@ -83,7 +81,8 @@ namespace LearningApplicationTesting
                     MouseDownLocation = e.Location;
                     LastPos = new Point(pb.Location.X, pb.Location.Y);
                     int misc = 0;
-                    foreach (PictureBox rb in recipieBoxes)
+                    
+                    foreach (PictureBox rb in recipieBoxes) //if an click event araise set rb to filled == flase, makes that and unfilled rb is not locked an an item.
                     {
                         if (rb.Bounds.Contains(PointToClient(Cursor.Position)))
                         {
@@ -146,16 +145,31 @@ namespace LearningApplicationTesting
                         pb.Left = startX;
                         pb.Top = startY;
                     }
+
+                    //Debugg tool
+                    Console.WriteLine("------------------------------------------");
+                    foreach (PB_Info info in PBI)
+                    {
+                        Console.WriteLine(String.Format("{0} - IsFilled?:{1} - Item Number:{2}", info.ToString() , info.Filled.ToString(), info.Item.ToString()));
+                    }
                 };
             }
+            //Debug tool
+            pb.Click += (s, e) => 
+            {
+                PictureBox p = s as PictureBox;
+                Console.WriteLine("--------------------");
+                Console.WriteLine(p.Name);
+            };
+
             Controls.Add(pb);
             return pb;
         }
 
         //Generates a picturebox, with more parameters
-        private PictureBox GenPB(int startX, int startY, bool movable, bool recipieBox, string tag)
+        private PictureBox GenPB(string name, int startX, int startY, bool movable, bool recipieBox, string tag)
         {
-            PictureBox pb = GenPB(startX, startY, movable, recipieBox);
+            PictureBox pb = GenPB(name, startX, startY, movable, recipieBox);
             pb.Tag = tag;
             if (recipieBox)
                 recipieBoxes[Convert.ToInt16(tag.ToString())] = pb;
