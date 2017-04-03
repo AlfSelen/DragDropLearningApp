@@ -50,7 +50,7 @@ namespace LearningApplicationTesting
         // ----- Creation of controls -----------
         #region Controls
 
-        //Creating pictureboxes using GenPB(), with parameters
+        // --------------------- Creating pictureboxes using GenPB(), with parameters --------------------------
         private void LoopGen()
         {
             for (int i = 0; i < 9; i++)
