@@ -1,7 +1,7 @@
 ﻿namespace LearningApplicationTesting
 {
-    class Recipe
+    public class Recipe
     {
-        Item[] Items = new Item[9];
+        public Item[] Items = new Item[9];
     }
 }

@@ -17,6 +17,7 @@ namespace LearningApplicationTesting
             InitializeComponent();
             //InitializeOwnComponents, using LoopGen to create movable objects and stationary objects
             LoopGen();
+            //LoadGame();
         }
         // -------- Declaration of Classes and Variabels --------
         #region Classes&Varibels
@@ -26,8 +27,25 @@ namespace LearningApplicationTesting
         PictureBox[] recipieBoxes = new PictureBox[9];
         private Point MouseDownLocation;
         private Point LastPos;
-        ItemIndex itemIndex = new ItemIndex();
+        private ItemIndex itemIndex = new ItemIndex();
+        private Random rnd = new Random();
+        Recipe WishedItemRecipe;
         #endregion Classes&Variabels
+
+        // ----------- Game mechanics ---------------------
+        /*private void LoadGame()
+        {
+            //Wuished Item
+            WishedItemRecipe = itemIndex.Recipes[rnd.Next(0, itemIndex.Recipes.Count)];
+
+            //Itemselection
+            int i = 0;
+            foreach (PB_Info pi in PBI)
+            {
+                pi.Item = WishedItemRecipe.Items[i];
+                i++;
+            }
+        } */
 
         // ----- Creation of controls -----------
         #region Controls
@@ -46,7 +64,7 @@ namespace LearningApplicationTesting
                     int x = i * 3 + i * size + 10;
                     int y = j * 3 + j * size + 10;
                     GenPB(String.Format("RecipeBoxNR:{0}", (3 * j + i)), x, y, false, true, (3 * j + i).ToString());
-                    PBI[(3 * j + i)] = new PB_Info(false, "");
+                    PBI[(3 * j + i)] = new PB_Info(false);
                 }
 
             }
@@ -154,7 +172,7 @@ namespace LearningApplicationTesting
                 };
             }
 
-            //
+          
             if (pb.Name == "Wisheditem&CheckBOX")
             {
                 pb.Click += (s, e) => 

@@ -11,14 +11,14 @@ namespace LearningApplicationTesting
         // ---------------- Properties -------------------
 
         public bool Filled { get; set; }
-        public string Item { get; set; }
+        public Item Item { get; set; }
         
         // --------------- Constructor -------------------
 
-        public PB_Info(bool fd, string itm)            
+        public PB_Info(bool fd)            
         {
             Filled = fd;
-            Item = itm;
+
         }
 
         // -------------- Default Constructor ------------

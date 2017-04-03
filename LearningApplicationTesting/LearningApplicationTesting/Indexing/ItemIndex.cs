@@ -12,8 +12,8 @@ namespace LearningApplicationTesting
     {
         //-------------------------------------------------------
         #region Properties
-        private List<Item> Items { get; set; }
-        private List<Recipe> Recipes { get; set; }
+        public List<Item> Items { get; set; }
+        public List<Recipe> Recipes { get; set; }
         #endregion
 
         //-------------------------------------------------------
@@ -33,7 +33,7 @@ namespace LearningApplicationTesting
             string ItemIndexJSON = Properties.Resources.ItemIndex.ToString();
             return JsonConvert.DeserializeObject<List<Item>>(ItemIndexJSON);
         }
-        //Load Recepice
+        //Load RecepiceIndex
         private List<Recipe> LoadRecipeIndex()
         {
             string recipeIndexJSON = Properties.Resources.RecipeIndex.ToString();
@@ -44,7 +44,7 @@ namespace LearningApplicationTesting
         //-------------------------------------------------------
         #region Save functions 
         //Add Recipe to Recipeindex savefile.
-        private void SaveRecipeToindex(Recipe recipeToSave)
+        public void SaveRecipeToindex(Recipe recipeToSave)
         {
             string recipeIndexJSON = Properties.Resources.RecipeIndex.ToString();
             List<Recipe> recipeIndexLoaded = JsonConvert.DeserializeObject<List<Recipe>>(recipeIndexJSON);
