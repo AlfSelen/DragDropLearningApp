@@ -33,7 +33,7 @@ namespace LearningApplicationTesting
         #endregion Classes&Variabels
 
         // ----------- Game mechanics ---------------------
-        /*private void LoadGame()
+        private void LoadGame()
         {
             //Wuished Item
             WishedItemRecipe = itemIndex.Recipes[rnd.Next(0, itemIndex.Recipes.Count)];
@@ -45,7 +45,7 @@ namespace LearningApplicationTesting
                 pi.Item = WishedItemRecipe.Items[i];
                 i++;
             }
-        } */
+        } 
 
         // ----- Creation of controls -----------
         #region Controls
