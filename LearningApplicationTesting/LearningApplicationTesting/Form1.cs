@@ -19,6 +19,8 @@ namespace LearningApplicationTesting
             //InitializeOwnComponents, using LoopGen to create movable objects and stationary objects
             LoopGen();
             //LoadGame();
+            ShowMyDialogBoxItems();
+            ShowMyDialogBoxRecipes();
         }
         // -------- Declaration of Classes and Variabels --------
         #region Classes&Varibels
@@ -44,7 +46,7 @@ namespace LearningApplicationTesting
             int i = 0;
             foreach (PB_Info pi in PBI_I)
             {
-                pi.Item = WishedItemRecipe.Items[i];
+                pi.Item = WishedItemRecipe.ConstructItems[i];
                 pi.Item.ItemIcon = (Image)Properties.Resource1.ResourceManager.GetObject(String.Format("_{0}_{1}", pi.Item.Type, pi.Item.Meta)); //This code tho'
                 pi.Picturebox.Image = pi.Item.ItemIcon;
                 i++;
@@ -218,21 +220,20 @@ namespace LearningApplicationTesting
             
         }
 
-        public void ShowMyDialogBox()
+        public void ShowMyDialogBoxItems()
         {
-            Form testDialog = new Form();
+            FormItems testDialog = new FormItems();
 
             // Show testDialog as a modal dialog and determine if DialogResult = OK.
-            if (testDialog.ShowDialog(this) == DialogResult.OK)
-            {
-                // Read the contents of testDialog's TextBox.
-                this.txtResult.Text = testDialog.TextBox1.Text;
-            }
-            else
-            {
-                this.txtResult.Text = "Cancelled";
-            }
-            testDialog.Dispose();
+            if (testDialog.ShowDialog(this) == DialogResult.OK) { testDialog.Dispose(); }
+        }
+
+        public void ShowMyDialogBoxRecipes()
+        {
+            FormRecipes testDialog = new FormRecipes();
+
+            // Show testDialog as a modal dialog and determine if DialogResult = OK.
+            if (testDialog.ShowDialog(this) == DialogResult.OK) { testDialog.Dispose(); }
         }
 
         //Old code, from when we Used the .tag property for storing information

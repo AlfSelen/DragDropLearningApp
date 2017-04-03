@@ -2,6 +2,7 @@
 {
     public class Recipe
     {
-        public Item[] Items = new Item[9];
+        public int Item { get; set;}
+        public Item[] ConstructItems = new Item[9];
     }
 }

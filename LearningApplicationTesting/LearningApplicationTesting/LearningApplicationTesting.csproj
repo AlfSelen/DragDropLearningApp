@@ -68,6 +68,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormRecipes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRecipes.Designer.cs">
+      <DependentUpon>FormRecipes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItems.Designer.cs">
+      <DependentUpon>FormItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="GamrMechanics.cs" />
     <Compile Include="Indexing\Item.cs" />
     <Compile Include="Form1.cs">
@@ -92,6 +104,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Designer_Form.resx">
       <DependentUpon>Designer_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItems.resx">
+      <DependentUpon>FormItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRecipes.resx">
+      <DependentUpon>FormRecipes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resource1.resx">
       <Generator>ResXFileCodeGenerator</Generator>
