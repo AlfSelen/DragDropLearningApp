@@ -24,7 +24,8 @@ namespace LearningApplicationTesting
         // -------- Declaration of Classes and Variabels --------
         #region Classes&Varibels
         int size = 90;
-        PictureBox lastpicturebox;
+        int lastItemBox;
+        PictureBox lastRB;
         PB_Info[] PBI_R = new PB_Info[9];
         PB_Info[] PBI_I = new PB_Info[9];
         PictureBox[] recipieBoxes = new PictureBox[9];
@@ -104,17 +105,19 @@ namespace LearningApplicationTesting
                     pb.BringToFront();
                     MouseDownLocation = e.Location;
                     LastPos = new Point(pb.Location.X, pb.Location.Y);
-                    int misc = 0;
+                    int i = 0;
+                    lastItemBox = Convert.ToInt16(pb.Tag.ToString());
                     
                     foreach (PictureBox rb in recipieBoxes) //if an click event araise set rb to filled == flase, makes that and unfilled rb is not locked an an item.
                     {
                         if (rb.Bounds.Contains(PointToClient(Cursor.Position)))
                         {
-                            PBI_I[misc].Filled = false;
-                            lastpicturebox = rb;
+                            PBI_R[i].Filled = false;
+                            PBI_R[i].Item = null;
+                            lastRB = rb;
                             break;
                         }
-                        misc++;
+                        i++;
                     }
                 };
                 //MoouseMove - event, updating location of the picturebox
@@ -143,6 +146,8 @@ namespace LearningApplicationTesting
                                 pb.Left = rb.Left;
                                 pb.Top = rb.Top;
                                 used = true;
+                                // ------------------------------ Item ---------------------------
+                                PBI_R[i].Item = PBI_I[lastItemBox].Item;                          
                                 break;
                             }
                             else
@@ -154,7 +159,8 @@ namespace LearningApplicationTesting
                                 {
                                     if (recipieBoxes[j].Bounds.Contains(LastPos))
                                     {
-                                        PBI_R[Convert.ToInt16(lastpicturebox.Tag.ToString())].Filled = true;
+                                        PBI_R[Convert.ToInt16(lastRB.Tag.ToString())].Filled = true;
+                                        PBI_R[Convert.ToInt16(lastRB.Tag.ToString())].Item = PBI_I[lastItemBox].Item;
                                         break;
                                     }
                                 }
@@ -174,7 +180,7 @@ namespace LearningApplicationTesting
                     Console.WriteLine("------------------------------------------");
                     foreach (PB_Info info in PBI_R)
                     {
-                        Console.WriteLine(String.Format("{0} - IsFilled?:{1} - Item Number:{2}", info.ToString() , info.Filled.ToString(), info.Item.ToString()));
+                  //      Console.WriteLine(String.Format("{0} - IsFilled?:{1} - Item Number:{2}", info.ToString() , info.Filled.ToString(), info.Item.ToString()));
                     }
                 };
             }
@@ -238,6 +244,22 @@ namespace LearningApplicationTesting
 
             // Show testDialog as a modal dialog and determine if DialogResult = OK.
             if (testDialog.ShowDialog(this) == DialogResult.OK) { testDialog.Dispose(); }
+        }
+
+        private bool CheckRecipie()
+        {
+            Recipe CurrentItemRecipie = WishedItemRecipe;
+            for (int i = 0; i < 9; i++)
+            {
+                CurrentItemRecipie.ConstructItems[i] = PBI_R[i].Item;
+            }
+            for (int i = 0; i < 9; i++)
+            {
+                if (WishedItemRecipe.ConstructItems[i] == CurrentItemRecipie.ConstructItems[i]) ;
+                else
+                    return false;
+            }
+            return true;
         }
 
         //Old code, from when we Used the .tag property for storing information
