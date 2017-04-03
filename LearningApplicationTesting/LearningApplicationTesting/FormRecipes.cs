@@ -16,12 +16,16 @@ namespace LearningApplicationTesting
         {
             InitializeComponent();
             dataGridView1.DataSource = itemIndex.Recipes;
+            dataGridView2.DataSource = itemIndex.Items;
         }
         private ItemIndex itemIndex = new ItemIndex();
 
         private void newRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Recipe r = new Recipe();
+            r.Item = dataGridView2.SelectedRows[0].Index;
+
+
             itemIndex.Recipes.Add(r);
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = itemIndex.Recipes;

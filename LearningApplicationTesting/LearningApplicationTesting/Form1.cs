@@ -19,7 +19,6 @@ namespace LearningApplicationTesting
             //InitializeOwnComponents, using LoopGen to create movable objects and stationary objects
             LoopGen();
             //LoadGame();
-            ShowMyDialogBoxItems();
             ShowMyDialogBoxRecipes();
         }
         // -------- Declaration of Classes and Variabels --------
@@ -220,12 +219,17 @@ namespace LearningApplicationTesting
             
         }
 
-        public void ShowMyDialogBoxItems()
+        public Item ShowMyDialogBoxItems()
         {
             FormItems testDialog = new FormItems();
+            Item it = new Item();
 
             // Show testDialog as a modal dialog and determine if DialogResult = OK.
-            if (testDialog.ShowDialog(this) == DialogResult.OK) { testDialog.Dispose(); }
+            if (testDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                return it;
+                
+            }
         }
 
         public void ShowMyDialogBoxRecipes()

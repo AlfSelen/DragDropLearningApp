@@ -20,6 +20,7 @@ namespace LearningApplicationTesting
         //-------------------------------------------------------
         #region Constructors
         public Item(System.Drawing.Image icon) { ItemIcon = icon; }
+        public Item() { }
         #endregion
     }
 }
