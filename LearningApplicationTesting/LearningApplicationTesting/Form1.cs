@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace LearningApplicationTesting
 {
@@ -23,7 +24,8 @@ namespace LearningApplicationTesting
         #region Classes&Varibels
         int size = 90;
         PictureBox lastpicturebox;
-        PB_Info[] PBI = new PB_Info[9];
+        PB_Info[] PBI_R = new PB_Info[9];
+        PB_Info[] PBI_I = new PB_Info[9];
         PictureBox[] recipieBoxes = new PictureBox[9];
         private Point MouseDownLocation;
         private Point LastPos;
@@ -40,11 +42,14 @@ namespace LearningApplicationTesting
 
             //Itemselection
             int i = 0;
-            foreach (PB_Info pi in PBI)
+            foreach (PB_Info pi in PBI_I)
             {
                 pi.Item = WishedItemRecipe.Items[i];
+                pi.Item.ItemIcon = (Image)Properties.Resource1.ResourceManager.GetObject(String.Format("_{0}_{1}", pi.Item.Type, pi.Item.Meta)); //This code tho'
+                pi.Picturebox.Image = pi.Item.ItemIcon;
                 i++;
             }
+
         } 
 
         // ----- Creation of controls -----------
@@ -55,7 +60,8 @@ namespace LearningApplicationTesting
         {
             for (int i = 0; i < 9; i++)
             {
-                GenPB(String.Format("ItemBoxNR:{0}",i),i * size + i * 3, this.Height - size - 45, true, false, (i).ToString());
+                var pb = GenPB(String.Format("ItemBoxNR:{0}",i),i * size + i * 3, this.Height - size - 45, true, false, (i).ToString());
+                PBI_I[i] = new PB_Info(true, pb);
             }
             for (int i = 0; i < 3; i++)
             {
@@ -64,7 +70,7 @@ namespace LearningApplicationTesting
                     int x = i * 3 + i * size + 10;
                     int y = j * 3 + j * size + 10;
                     GenPB(String.Format("RecipeBoxNR:{0}", (3 * j + i)), x, y, false, true, (3 * j + i).ToString());
-                    PBI[(3 * j + i)] = new PB_Info(false);
+                    PBI_R[(3 * j + i)] = new PB_Info(false);
                 }
 
             }
@@ -103,7 +109,7 @@ namespace LearningApplicationTesting
                     {
                         if (rb.Bounds.Contains(PointToClient(Cursor.Position)))
                         {
-                            PBI[misc].Filled = false;
+                            PBI_I[misc].Filled = false;
                             lastpicturebox = rb;
                             break;
                         }
@@ -130,9 +136,9 @@ namespace LearningApplicationTesting
                     {
                         if (rb.Bounds.Contains(PointToClient(Cursor.Position)))
                         {
-                            if (!PBI[i].Filled)
+                            if (!PBI_R[i].Filled)
                             {
-                                PBI[i].Filled = true;
+                                PBI_R[i].Filled = true;
                                 pb.Left = rb.Left;
                                 pb.Top = rb.Top;
                                 used = true;
@@ -147,7 +153,7 @@ namespace LearningApplicationTesting
                                 {
                                     if (recipieBoxes[j].Bounds.Contains(LastPos))
                                     {
-                                        PBI[Convert.ToInt16(lastpicturebox.Tag.ToString())].Filled = true;
+                                        PBI_R[Convert.ToInt16(lastpicturebox.Tag.ToString())].Filled = true;
                                         break;
                                     }
                                 }
@@ -165,7 +171,7 @@ namespace LearningApplicationTesting
 
                     //Debugg tool
                     Console.WriteLine("------------------------------------------");
-                    foreach (PB_Info info in PBI)
+                    foreach (PB_Info info in PBI_R)
                     {
                         Console.WriteLine(String.Format("{0} - IsFilled?:{1} - Item Number:{2}", info.ToString() , info.Filled.ToString(), info.Item.ToString()));
                     }
@@ -209,7 +215,24 @@ namespace LearningApplicationTesting
         //To create new
         private void makeRecipe()
         {
+            
+        }
 
+        public void ShowMyDialogBox()
+        {
+            Form testDialog = new Form();
+
+            // Show testDialog as a modal dialog and determine if DialogResult = OK.
+            if (testDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                // Read the contents of testDialog's TextBox.
+                this.txtResult.Text = testDialog.TextBox1.Text;
+            }
+            else
+            {
+                this.txtResult.Text = "Cancelled";
+            }
+            testDialog.Dispose();
         }
 
         //Old code, from when we Used the .tag property for storing information

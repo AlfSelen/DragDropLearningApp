@@ -14,7 +14,7 @@ namespace LearningApplicationTesting
         public int Meta { get; set; }
         public string Name { get; set; }
         public string Text_type { get; set; }
-        public System.Drawing.Image ItemIcon { get; }
+        public System.Drawing.Image ItemIcon { get; set; }
         #endregion
 
         //-------------------------------------------------------
