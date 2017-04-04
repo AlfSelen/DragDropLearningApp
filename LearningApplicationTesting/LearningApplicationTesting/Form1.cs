@@ -242,8 +242,7 @@ namespace LearningApplicationTesting
             }
             for (int i = 0; i < 9; i++)
             {
-                if (WishedItemRecipe.ConstructItems[i] == CurrentItemRecipie.ConstructItems[i]) ;
-                else
+                if (!(WishedItemRecipe.ConstructItems[i] == CurrentItemRecipie.ConstructItems[i]))
                     return false;
             }
             return true;
