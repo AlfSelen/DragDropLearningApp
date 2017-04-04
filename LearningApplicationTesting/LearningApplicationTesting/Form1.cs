@@ -225,19 +225,6 @@ namespace LearningApplicationTesting
             
         }
 
-        public Item ShowMyDialogBoxItems()
-        {
-            FormItems testDialog = new FormItems();
-            Item it = new Item();
-
-            // Show testDialog as a modal dialog and determine if DialogResult = OK.
-            if (testDialog.ShowDialog(this) == DialogResult.OK)
-            {
-                return it;
-                
-            }
-        }
-
         public void ShowMyDialogBoxRecipes()
         {
             FormRecipes testDialog = new FormRecipes();

@@ -23,12 +23,20 @@ namespace LearningApplicationTesting
         private void newRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Recipe r = new Recipe();
-            r.Item = dataGridView2.SelectedRows[0].Index;
-
-
+            r.Item = itemIndex.Items[dataGridView2.SelectedRows[0].Index];
+            for (int i = 0; i < 9; i++)
+            {
+                FormItems f = new FormItems();
+                r.ConstructItems[i] = f.ShowMyDialogBoxItems();
+            }
             itemIndex.Recipes.Add(r);
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = itemIndex.Recipes;
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
