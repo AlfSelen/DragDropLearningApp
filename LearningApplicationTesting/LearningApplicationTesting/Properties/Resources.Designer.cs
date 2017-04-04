@@ -87,5 +87,15 @@ namespace LearningApplicationTesting.Properties {
                 return ResourceManager.GetString("RecipeIndex", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] recipes {
+            get {
+                object obj = ResourceManager.GetObject("recipes", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }
