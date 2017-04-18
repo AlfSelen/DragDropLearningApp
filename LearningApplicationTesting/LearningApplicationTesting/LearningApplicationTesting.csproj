@@ -142,7 +142,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\New Text Document.json" />
     <None Include="Resources\recipes.json" />
+    <None Include="Resources\recipesv1.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -2318,6 +2320,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\minecraft_dirt.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\recipesv1txt.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

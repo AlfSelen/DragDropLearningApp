@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Data;
+using System.IO;
+
 
 namespace LearningApplicationTesting
 {
@@ -38,5 +42,8 @@ namespace LearningApplicationTesting
             return r;
         }
 
+        //parse
+        TextReader reader = StringReader Properties.Resources.recipesv1txt;
+        JObject o = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
     }
 }

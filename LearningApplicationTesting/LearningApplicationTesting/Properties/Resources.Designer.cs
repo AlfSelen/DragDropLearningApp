@@ -107,5 +107,56 @@ namespace LearningApplicationTesting.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] recipesv1 {
+            get {
+                object obj = ResourceManager.GetObject("recipesv1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {
+        ///  &quot;1&quot;: [
+        ///    {
+        ///      &quot;ingredients&quot;: [
+        ///        {
+        ///          &quot;id&quot;: 1,
+        ///          &quot;metadata&quot;: 3
+        ///        },
+        ///        406
+        ///      ],
+        ///      &quot;result&quot;: {
+        ///        &quot;count&quot;: 1,
+        ///        &quot;id&quot;: 1,
+        ///        &quot;metadata&quot;: 1
+        ///      }
+        ///    },
+        ///    {
+        ///      &quot;inShape&quot;: [
+        ///        [
+        ///          {
+        ///            &quot;id&quot;: 1,
+        ///            &quot;metadata&quot;: 1
+        ///          },
+        ///          {
+        ///            &quot;id&quot;: 1,
+        ///            &quot;metadata&quot;: 1
+        ///          }
+        ///        ],
+        ///        [
+        ///          {
+        ///            &quot;id&quot;: 1,
+        ///            &quot;metadata&quot;: 1
+        ///      [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string recipesv1txt {
+            get {
+                return ResourceManager.GetString("recipesv1txt", resourceCulture);
+            }
+        }
     }
 }
