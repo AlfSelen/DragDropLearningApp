@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
+using System.IO;
 
 namespace LearningApplicationTesting
 {
@@ -19,10 +20,23 @@ namespace LearningApplicationTesting
             //InitializeOwnComponents, using LoopGen to create movable objects and stationary objects
             LoopGen();
             //LoadGame();
-            ShowMyDialogBoxRecipes();
+            Parse_Recipes pr = new Parse_Recipes();
+            itemIndex.Recipes = new List<Recipe>();
+            itemIndex.Recipes.Add(pr.createreciep());
+            itemIndex.SaveRecipeToindex(pr.createreciep(), Path.Combine(Directory.GetParent(Application.LocalUserAppDataPath).Parent.FullName, "Resources"));
+            //displayform.Show();
+            //displayform.pictureBox1 = gp.renderformObjects(this); 
+            LoadGame();
+
+            //background texture 
+            this.BackgroundImage = Properties.Resources.minecraft_dirt;
+            this.BackgroundImageLayout = ImageLayout.Tile;
         }
         // -------- Declaration of Classes and Variabels --------
         #region Classes&Varibels
+        Form3 displayform = new Form3();
+        OGPC gp = new OGPC();
+
         int size = 90;
         int lastItemBox;
         PictureBox lastRB;
@@ -40,19 +54,34 @@ namespace LearningApplicationTesting
         private void LoadGame()
         {
             //Wuished Item
-            WishedItemRecipe = itemIndex.Recipes[rnd.Next(0, itemIndex.Recipes.Count)];
+            //WishedItemRecipe = itemIndex.Recipes[rnd.Next(0, itemIndex.Recipes.Count)];
 
             //Itemselection
             int i = 0;
             foreach (PB_Info pi in PBI_I)
             {
-                pi.Item = WishedItemRecipe.ConstructItems[i];
+                //pi.Item = WishedItemRecipe.ConstructItems[i];
+                pi.Item = itemIndex.Items[rnd.Next(1, 4)];
                 pi.Item.ItemIcon = (Image)Properties.Resource1.ResourceManager.GetObject(String.Format("_{0}_{1}", pi.Item.Type, pi.Item.Meta)); //This code tho'
                 pi.Picturebox.Image = pi.Item.ItemIcon;
                 i++;
             }
 
-        } 
+        }
+        private bool CheckRecipie()
+        {
+            Recipe CurrentItemRecipie = WishedItemRecipe;
+            for (int i = 0; i < 9; i++)
+            {
+                CurrentItemRecipie.ConstructItems[i] = PBI_R[i].Item;
+            }
+            for (int i = 0; i < 9; i++)
+            {
+                if (!(WishedItemRecipe.ConstructItems[i] == CurrentItemRecipie.ConstructItems[i]))
+                    return false;
+            }
+            return true;
+        }
 
         // ----- Creation of controls -----------
         #region Controls
@@ -92,8 +121,8 @@ namespace LearningApplicationTesting
             pb.AllowDrop = true;
             pb.BorderStyle = BorderStyle.FixedSingle;
             pb.SizeMode = PictureBoxSizeMode.StretchImage;
-            if (movable)
-                pb.Image = Properties.Resources.Minecraft_grass_block;
+            pb.BackColor = Color.FromArgb(100,10,10,10);
+            pb.BorderStyle = BorderStyle.Fixed3D;
             #endregion MiscStuff
 
             //Adding events if movable == true (that means itemboxes)
@@ -219,54 +248,9 @@ namespace LearningApplicationTesting
 
         #endregion Controls
 
-        //To create new
-        private void makeRecipe()
+        private void timer1_Tick(object sender, EventArgs e)
         {
-            
+            displayform.pictureBox1 = gp.renderformObjects(this);
         }
-
-        public void ShowMyDialogBoxRecipes()
-        {
-            FormRecipes testDialog = new FormRecipes();
-
-            // Show testDialog as a modal dialog and determine if DialogResult = OK.
-            if (testDialog.ShowDialog(this) == DialogResult.OK) { testDialog.Dispose(); }
-        }
-
-        private bool CheckRecipie()
-        {
-            Recipe CurrentItemRecipie = WishedItemRecipe;
-            for (int i = 0; i < 9; i++)
-            {
-                CurrentItemRecipie.ConstructItems[i] = PBI_R[i].Item;
-            }
-            for (int i = 0; i < 9; i++)
-            {
-                if (!(WishedItemRecipe.ConstructItems[i] == CurrentItemRecipie.ConstructItems[i]))
-                    return false;
-            }
-            return true;
-        }
-
-        //Old code, from when we Used the .tag property for storing information
-        #region Unused
-        private bool check_ifOriginalTag(string rb)
-        {
-            for (int i = 0; i < 9; i++)
-            {
-                if (rb == i.ToString()) return true;
-            }
-            return false;
-        }
-        private PictureBox find_Tag(string tag)
-        {
-            foreach (PictureBox rb in recipieBoxes)
-            {
-                if (rb.Tag.ToString().Split('-')[0] == tag)
-                { return rb; }
-            }
-            return null;
-        }
-        #endregion Unused
     }
 }

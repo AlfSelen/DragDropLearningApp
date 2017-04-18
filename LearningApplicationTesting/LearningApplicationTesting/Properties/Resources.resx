@@ -121,10 +121,16 @@
   <data name="ItemIndex" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ItemIndex.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="minecraft_dirt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minecraft_dirt.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Minecraft_grass_block" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Minecraft_grass_block.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="RecipeIndex" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RecipeIndex.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="recipes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\recipes.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

@@ -13,7 +13,7 @@ namespace LearningApplicationTesting
         //-------------------------------------------------------
         #region Properties
         public List<Item> Items { get; set; }
-        public List<Recipe> Recipes { get; set; }
+        public List<Recipe> Recipes = new List<Recipe>();
         #endregion
 
         //-------------------------------------------------------
@@ -44,13 +44,13 @@ namespace LearningApplicationTesting
         //-------------------------------------------------------
         #region Save functions 
         //Add Recipe to Recipeindex savefile.
-        public void SaveRecipeToindex(Recipe recipeToSave)
+        public void SaveRecipeToindex(Recipe recipeToSave, string path)
         {
-            string recipeIndexJSON = Properties.Resources.RecipeIndex.ToString();
-            List<Recipe> recipeIndexLoaded = JsonConvert.DeserializeObject<List<Recipe>>(recipeIndexJSON);
+            string recipeIndexJSON; // = Properties.Resources.RecipeIndex.ToString();
+            List<Recipe> recipeIndexLoaded = new List<Recipe>();//JsonConvert.DeserializeObject<List<Recipe>>(recipeIndexJSON);
             recipeIndexLoaded.Add(recipeToSave);
-            recipeIndexJSON = JsonConvert.SerializeObject(recipeIndexJSON);
-            File.WriteAllText(Properties.Resources.RecipeIndex, recipeIndexJSON);
+            recipeIndexJSON = JsonConvert.SerializeObject(recipeIndexLoaded);
+          //  File.WriteAllText( path, recipeIndexJSON);
         }
         #endregion
 

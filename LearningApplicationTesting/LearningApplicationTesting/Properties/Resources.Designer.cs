@@ -72,6 +72,16 @@ namespace LearningApplicationTesting.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap minecraft_dirt {
+            get {
+                object obj = ResourceManager.GetObject("minecraft_dirt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Minecraft_grass_block {
             get {
                 object obj = ResourceManager.GetObject("Minecraft_grass_block", resourceCulture);
